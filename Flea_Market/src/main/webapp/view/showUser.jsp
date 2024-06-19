@@ -1,5 +1,5 @@
 <%@page contentType="text/html; charset=UTF-8"%>
-
+<%@page import="java.util.ArrayList,bean.User"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -43,26 +43,23 @@
 			</tr>
 		</thead>
 
+		<%
+		ArrayList<User> list =(ArrayList<User>)request.getAttribute("userList");
+		if(list != null){
+			for(int i=0;i<list.size();i++){
+				User users = (User)list.get(i);
+		%>
+		
 		<tr>
-			<td><a href ="" >0001</a></td>
-			<td>かんだくん</td>
+			<td><a href ="" ><%=users.getUserId()%></a></td>
+			<td><%=getNickname()%></td>
 		</tr>
-		<tr>
-			<td><a href ="" >0002</a></td>
-			<td>aya@プロフ必読</td>
-		</tr>
-		<tr>
-			<td><a href ="" >0003</a></td>
-			<td>今村</td>
-		</tr>
-		<tr>
-			<td><a href ="" >0004</a></td>
-			<td>焼き芋</td>
-		</tr>
-		<tr>
-			<td><a href ="" >0005</a></td>
-			<td>。</td>
-		</tr>
+		
+		<%
+			}
+		}
+		%>
+
 
 	</table>
 	<hooter><hr></hooter>

@@ -35,7 +35,7 @@
 				</div>	
 				
 			</table>
-				<div style="text-align: center; background-color: gray; background-size:cover ; width:200px;margin:auto;"><a href="userInsert.jsp">ユーザー登録</a></div>
+				<div style="text-align: center; background-color: gray; background-size:cover ; width:200px;margin:auto;"><a href="<%=request.getContextPath()%>/login">ユーザー登録</a></div>
 		</form>
 	</div>
 		

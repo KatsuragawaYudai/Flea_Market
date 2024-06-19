@@ -1,4 +1,5 @@
 <%@page contentType="text/html; charset=UTF-8"%>
+<%@page import="java.util.ArrayList,bean.Trade"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -36,76 +37,15 @@ table td {
                 配送状況
             </td>
         </tr>
+        <%
+        ArrayList<Trade>list = session.getAttribute("trade_list");
+        for(int i=0;i<list.size();i++){
+        	 int itemId = list.get(i).getItemId();
+        	 int =list.get(i).get
+        
+        %>
         <tr>
-            <td>
-                1212301
-            </td>
-            <td>
-                自家製の焼物
-            </td>
-            <td>
-                2024/06/13
-            </td>
-            <td>
-               <a href="status.html">配達完了</a>
-            </td>
+        <td><%tradelist. %></td>
         </tr>
-        <tr>
-            <td>
-                1232302
-            </td>
-            <td>
-                竹の箸
-            </td>
-            <td>
-                2024/06/13
-            </td>
-            <td>
-                <a href="#">配達完了</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                1242302
-            </td>
-            <td>
-                ヴィンテージズボン
-            </td>
-            <td>
-                2024/06/17
-            </td>
-            <td>
-                <a href="#">配達完了</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                1332302
-            </td>
-            <td>
-                ノリタケの食器
-            </td>
-            <td>
-                2024/06/18
-            </td>
-            <td>
-                <a href="#">配達中</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                1344302
-            </td>
-            <td>
-                今治のタオル
-            </td>
-            <td>
-                2024/06/18
-            </td>
-            <td>
-                <a href="#">配達中</a>
-            </td>
-        </tr>
-    </table>
 </body>
 </html>

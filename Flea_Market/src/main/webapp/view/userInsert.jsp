@@ -24,7 +24,7 @@
 			</tr>
 						<tr>
 				<td style="background-color: gray;width: 150;">メールアドレス</td>
-				<td><input type=text size="30" name="mail-address"></input></td>
+				<td><input type=text size="30" name="email"></input></td>
 			</tr>
 			<tr>
 				<td style="background-color: gray;width: 150;">パスワード</td>

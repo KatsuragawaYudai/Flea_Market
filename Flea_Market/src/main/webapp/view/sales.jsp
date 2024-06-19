@@ -1,4 +1,10 @@
 <%@page contentType="text/html; charset=UTF-8"%>
+<%@page import="java.util.ArrayList,bean.Trade" %>
+<%@page import="servlet.Trade" %>
+
+<%ArrayList<Trade> list =(ArrayList<Trade>)request.getAttribute("list");%>
+ 
+
 <html>
 <head>
 <title>売上</title>
@@ -20,15 +26,36 @@
 					
 				</tr>
 				
+				<%
+				if(list != null){
+					for(int i=0; i<list.size(); i++){
+						Trade trade =list.get(i);
+				%>
+				
 				<tr>
-					<td style="text-align:center; width:250px">2024-06-18</td>
-					<td style="text-align:center; width:150px">00001</td>
-					<td style="text-align:center; width:150px">田中</td>
-					<td style="text-align:center; width:150px">加藤</td>
-					<td style="text-align:left; width:150px">\9999</td>
+					<td style="text-align:center; width:250px"><%trade.getUpdateTime()%></td>
+					<td style="text-align:center; width:150px"><%trade.getTradeId()%></td>
+					<td style="text-align:center; width:150px"><%trade.getProducerId() %></td>
+					<td style="text-align:center; width:150px"><%trade.getCustomerId() %></td>
+					<td style="text-align:left; width:150px"><%trade.getPayment() %></td>
 					
 				</tr>
 				
+				<%
+					}
+				}
+				
+				int totalPayment =0;
+				int totalEarning =0;
+				
+				if(list !=null){
+					for(int i=0; i<list.size(); i++){
+						Trade trade =list.get(i);
+						totalPayment += trade.getPayment();
+						totalEarning += trade.getEarning();
+					}
+				}
+				%>
 				
 				
 							
@@ -36,13 +63,13 @@
 			
 			<hr	style="text-align: center; height: 1px; background-color: black; width: 950px">
 
-			<table >
+			<table >list
 				<form  action="<%=request.getContextPath()%>/" >
 				<tr style="text-align: center; width: 100px"><td  style="background-color: #6666ff ">売上合計</td>
-					<td>\0000</td>
+					<td>\<%=totalPayment %></td>
 				</tr>
 				<tr style="text-align: center; width: 100px"><td  style="background-color: #6666ff ">手数料合計</td>
-					<td>合計ｘ10%</td>
+					<td>\<%=totalEarning%></td>
 				</tr>		
 				</form>
 			</table
