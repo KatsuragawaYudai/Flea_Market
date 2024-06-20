@@ -1,8 +1,8 @@
+<%@page import="bean.Trade"%>
 <%@page contentType="text/html; charset=UTF-8"%>
-<%@page import="java.util.ArrayList,bean.Trade" %>
-<%@page import="servlet.Trade" %>
+<%@page import="java.util.ArrayList" %>
 
-<%ArrayList<Trade> list =(ArrayList<Trade>)request.getAttribute("list");%>
+<% ArrayList<Trade> list =(ArrayList<Trade>)request.getAttribute("list");%>
  
 
 <html>
@@ -33,11 +33,11 @@
 				%>
 				
 				<tr>
-					<td style="text-align:center; width:250px"><%trade.getUpdateTime()%></td>
-					<td style="text-align:center; width:150px"><%trade.getTradeId()%></td>
-					<td style="text-align:center; width:150px"><%trade.getProducerId() %></td>
-					<td style="text-align:center; width:150px"><%trade.getCustomerId() %></td>
-					<td style="text-align:left; width:150px"><%trade.getPayment() %></td>
+					<td style="text-align:center; width:250px"><%=trade.getUpdateTime()%></td>
+					<td style="text-align:center; width:150px"><%=trade.getTradeId()%></td>
+					<td style="text-align:center; width:150px"><%=trade.getProducerId() %></td>
+					<td style="text-align:center; width:150px"><%=trade.getCustomerId() %></td>
+					<td style="text-align:left; width:150px"><%=trade.getPayment() %></td>
 					
 				</tr>
 				
@@ -52,7 +52,7 @@
 					for(int i=0; i<list.size(); i++){
 						Trade trade =list.get(i);
 						totalPayment += trade.getPayment();
-						totalEarning += trade.getEarning();
+						//totalEarning += trade.getEarning();
 					}
 				}
 				%>
@@ -63,7 +63,7 @@
 			
 			<hr	style="text-align: center; height: 1px; background-color: black; width: 950px">
 
-			<table >list
+			<table >
 				<form  action="<%=request.getContextPath()%>/" >
 				<tr style="text-align: center; width: 100px"><td  style="background-color: #6666ff ">売上合計</td>
 					<td>\<%=totalPayment %></td>
@@ -72,7 +72,7 @@
 					<td>\<%=totalEarning%></td>
 				</tr>		
 				</form>
-			</table
+			</table>
 
 			</table>
 		</div>
