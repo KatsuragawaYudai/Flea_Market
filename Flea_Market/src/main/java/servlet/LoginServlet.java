@@ -17,7 +17,7 @@ public class LoginServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/view/login.jsp");
+		request.getRequestDispatcher("/view/login.jsp").forward(request, response);
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
 			passCookie.setMaxAge(60 * 60 * 24 * 5);
 			response.addCookie(passCookie);
 			
-			request.getRequestDispatcher("/view/userMenu.jsp");
+			request.getRequestDispatcher("/view/userMenu.jsp").forward(request, response);
 		}
 		
 		
