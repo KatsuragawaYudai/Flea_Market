@@ -34,8 +34,11 @@ table td {
                 日時
             </td>
             <td>
-                配送状況
+                発送状況
             </td>
+            <td>
+            <!-- 仕様変更　入金状況欄追加 -->
+            </td>入金状況欄</td>
         </tr>
         <%
         ArrayList<Trade>list = session.getAttribute("trade_list");
@@ -46,6 +49,8 @@ table td {
         %>
         <tr>
         <td><%tradelist. %></td>
+        <!-- 入金状況 payment.jspに遷移　-->
+        </td></td>
         </tr>
 </body>
 </html>

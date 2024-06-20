@@ -38,6 +38,7 @@
 	<table>
 		<thead>
 			<tr>
+			<!-- 仕様変更 ユーザーIDからuserDetailに飛べるように設計をお願いします。 -->
 				<th>ユーザーID</th>
 				<th>ユーザー名</th>
 			</tr>

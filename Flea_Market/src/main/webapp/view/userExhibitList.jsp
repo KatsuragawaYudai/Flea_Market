@@ -18,29 +18,64 @@ list2.add("1000");
 <body>
 <%@include file="../common/header.jsp"%>
 <h2 align="center">出品一覧（ユーザー）</h2>
+<br>
+<br>
 <table align="center" border="1px solid black">
+	<h3 align="center">発送が完了しています</h3>
 		<tr>	
 			<td style="background-color: gray; width: 100;">ID</td>
 			<td style="background-color: gray; width: 100;">商品名</td>
 			<td style="background-color: gray; width: 70">値段</td>
+			<td style="background-color: gray; width: 70">発送状況欄</td>
 			<td style="background-color: gray; width: 70">削除</td>
 			
 		</tr>
+		<!-- 発送前と発送済みでテーブルを分ける -->
 		<tr>
 		<td style="background-color: white; width: 200;"><%=list1.get(0)%></td>
 			<td style="background-color: white; width: 200;"><%=list1.get(1)%></td>
 			<td style="background-color: white; width: 200;"><%=list1.get(2)%></td>
+			<td style="background-color: white; width: 200;"><a href="status.jsp">発送前</a></td>
 			<td style="background-color: white; width: 200;"><a href="https:/あ/">削除</a></td>
 		</tr>
 				<tr>
 		<td style="background-color: white; width: 200;"><%=list2.get(0)%></td>
 			<td style="background-color: white; width: 200;"><%=list2.get(1)%></td>
 			<td style="background-color: white; width: 200;"><%=list2.get(2)%></td>
+			<td style="background-color: white; width: 200;"><a href="status.jsp">発送前</a></td>
 			<td style="background-color: white; width: 200;"><a href="https:/あ/">削除</a></td>
 		</tr>
-	<br>
-	
-	<br>
 	</table>
+<br>
+<br>
+<br>
+	<table align="center" border="1px solid black">
+		<h3 align="center">発送が完了していません</h3>
+		<tr>	
+			<td style="background-color: gray; width: 100;">ID</td>
+			<td style="background-color: gray; width: 100;">商品名</td>
+			<td style="background-color: gray; width: 70">値段</td>
+			<td style="background-color: gray; width: 70">発送状況欄</td>
+			<td style="background-color: gray; width: 70">削除</td>
+			
+		</tr>
+		<!-- 発送前と発送済みでテーブルを分ける -->
+		<tr>
+		<td style="background-color: white; width: 200;"><%=list1.get(0)%></td>
+			<td style="background-color: white; width: 200;"><%=list1.get(1)%></td>
+			<td style="background-color: white; width: 200;"><%=list1.get(2)%></td>
+			<td style="background-color: white; width: 200;"><a href="status.jsp">発送済み</a></td>
+			<td style="background-color: white; width: 200;"><a href="https:/あ/">削除</a></td>
+		</tr>
+				<tr>
+		<td style="background-color: white; width: 200;"><%=list2.get(0)%></td>
+			<td style="background-color: white; width: 200;"><%=list2.get(1)%></td>
+			<td style="background-color: white; width: 200;"><%=list2.get(2)%></td>
+			<td style="background-color: white; width: 200;"><a href="status.jsp">発送済み</a></td>
+			<td style="background-color: white; width: 200;"><a href="https:/あ/">削除</a></td>
+		</tr>
+
+	</table>
+
 </body>
 </html>
