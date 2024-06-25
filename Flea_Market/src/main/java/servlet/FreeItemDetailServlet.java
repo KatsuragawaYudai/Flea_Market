@@ -11,8 +11,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet("/itemDetail")
-public class ItemDetailServlet extends HttpServlet {
+@WebServlet("/freeItemDetail")
+public class FreeItemDetailServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -29,7 +29,7 @@ public class ItemDetailServlet extends HttpServlet {
 			
 			request.setAttribute("item",item);
 			
-			request.getRequestDispatcher("/view/goodsDetail.jsp").forward(request, response);
+			request.getRequestDispatcher("/view/freeItemDetail.jsp").forward(request, response);
 			return;
 			
 		}catch (IllegalStateException e) {

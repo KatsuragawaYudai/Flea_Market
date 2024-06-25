@@ -12,15 +12,22 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+@WebServlet("/search")
+public class SearchUserServlet extends HttpServlet{
 
-@WebServlet("/userList")
-public class UserListServlet extends HttpServlet {
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	public void doGet(HttpServletRequest request ,HttpServletResponse response) throws ServletException ,IOException{
+	
 		String error = "";
 		String cmd = "";
 		String link = "";
+		
+		UserDao daoSearch = new UserDao();
+		ArrayList<User> list = new ArrayList<User>();
+
+		response.setContentType("text/html; charset=UTF-8");
+		
+		String nickname = request.getParameter("nickname");
+
 		try {
 			HttpSession session = request.getSession();
 			User user = (User)session.getAttribute("user");
@@ -31,28 +38,23 @@ public class UserListServlet extends HttpServlet {
 				return;
 							
 			}
-			//インスタンス化
-			UserDao userDAO = new UserDao();
-
-			//リスト取得する
-			ArrayList<User> userList = userDAO.selectAll();
-
-			//取得したListを格納
-			request.setAttribute("userList", userList);
+			list = daoSearch.searchByName(nickname);
 			
 		}catch(IllegalStateException e) {
 			error = "DB接続エラー";
 			cmd = "メニュー";
 			link = "adminMenu";
 		}finally {
-			if(error.equals("")) {
+			if (error.equals("")) {
+				request.setAttribute("userList", list);
 				request.getRequestDispatcher("/view/showUser.jsp").forward(request, response);
-			}else {
-				request.setAttribute("cmd", cmd);
+			} else {
 				request.setAttribute("error", error);
+				request.setAttribute("cmd", cmd);
 				request.setAttribute("link", link);
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 			}
 		}
+		
 	}
 }

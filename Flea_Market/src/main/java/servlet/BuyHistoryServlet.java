@@ -3,9 +3,8 @@ package servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import bean.Item;
 import bean.Trade;
-import dao.ItemDao;
+import bean.User;
 import dao.TradeDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,19 +17,18 @@ import jakarta.servlet.http.HttpSession;
 public class BuyHistoryServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		ArrayList<Trade> tradeList = new ArrayList<Trade>();
-		ArrayList<Item>itemList = new ArrayList<Item>();
-		
-		TradeDao objTradeDao = new TradeDao();
-		ItemDao objItemDao = new ItemDao();
-		
-		tradeList = objTradeDao.selectAll();
-		itemList = objItemDao.selectAll();
-		
 		HttpSession session = request.getSession();
 		
+		User user = (User)session.getAttribute("user");
+		
+		ArrayList<Trade> tradeList = new ArrayList<Trade>();
+		
+		TradeDao objTradeDao = new TradeDao();
+		
+		tradeList = objTradeDao.selectByCustomerId(user.getUserId());
+		
+		
 		session.setAttribute("trade_list", tradeList);
-		session.setAttribute("item_list", itemList);
+		request.getRequestDispatcher("/view/buyHistory.jsp").forward(request, response);
 	}
 }

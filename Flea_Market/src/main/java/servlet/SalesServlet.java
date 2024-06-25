@@ -17,21 +17,34 @@ public class SalesServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		
+		String error = "";
+		String cmd = "";
 
-		//インスタンス化
-		TradeDao trade = new TradeDao();
+		try {
 		
-		//取引情報を呼び出し、戻り値をアレイリストに格納
-		ArrayList<Trade> tradeList =trade.selectAll();
+			//インスタンス化
+			TradeDao trade = new TradeDao();
+			
+			//取引情報を呼び出し、戻り値をアレイリストに格納
+			ArrayList<Trade> tradeList =trade.selectByTradeStatus(3);
+			
+			//リクエストスコープに設定
+			request.setAttribute("list",tradeList);
+			
+			//sales.jspを遷移
+			request.getRequestDispatcher("/view/sales.jsp").forward(request,response);
+			
+			return;
+			
+		}catch (IllegalStateException e) {
+			request.setAttribute( "error","DB接続エラーの為、ログインは出来ません。"); 
+			request.setAttribute("cmd", "ログイン画面へ戻る");
+			request.setAttribute("link", "login");
+
 		
-		//リクエストスコープに設定
-		request.setAttribute("list",tradeList);
-		
-		//sales.jspを遷移
-		request.getRequestDispatcher("/view/sales.jsp").forward(request,response);
-		
-		
-		
-		
+		}finally {
+			request.getRequestDispatcher("/error").forward(request, response);
+		}
 	}
 }

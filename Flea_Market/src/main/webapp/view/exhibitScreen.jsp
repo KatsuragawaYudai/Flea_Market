@@ -7,7 +7,7 @@
 	<body>
 	<%@include file="../common/header.jsp"%>
 		<h2 style="text-align:center">出品</h2>
-		<form action="<%=request.getContextPath() %>/exhibitScreen">
+		<form method="post" action="<%=request.getContextPath() %>/exhibitScreen?" enctype="multipart/form-data">
 			<table style="text-align:center; margin:auto">
 				<tr>
 					<td style="font-size:19px" colspan="2">出品物登録</td>
@@ -16,9 +16,17 @@
 					<td style="width:150px; background-color: salmon">商品名</td>
 					<td><input type=text  size="50px"; name="name"></td>
 				</tr>
+								<tr>
+					<td style="width:150px; background-color: salmon">商品画像</td>
+					<td><input type="file"  size="50px"; name="image"></td>
+				</tr>
 				<tr>
 					<td style="width:150px; background-color: salmon">価格</td>
 					<td><input type=text  size="50px"; name="price"></td>
+				</tr>
+								<tr>
+					<td style="width:150px; background-color: salmon">地域</td>
+					<td><input type=text  size="50px"; name="region"></td>
 				</tr>
 				<tr>
 					<td style="width:150px; background-color: salmon">備考</td>

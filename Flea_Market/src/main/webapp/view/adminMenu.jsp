@@ -62,24 +62,51 @@
   list-style: none;
   padding-left: 1em; //1文字文の余白を設定する場合。完全に無くしたい場合は0を入れる。
 }
+a{
+	color: rgb(198, 241,231);
+}
+body{
+background-color:rgb(88,96,109);
+}
+
+h1{
+color: rgb(198, 241,231);
+}
+.admin a:hover{
+	background-color:rgb(198, 241,231);
+	opacity: 1;
+	border-radius:0.2rem;
+	color:black;
+}
+.admin a{
+	text-decoration:none;
+	font-size:20px;
+	font-weight:20px;
+	margin-bottom:50px;
+}
+li{
+	margin-top:2%;
+}
 </style>
 </head>
 <body>
   <div align="center">
     <header></header>
     <main>
-    <%@include file="../common/header.jsp"%>
+    <%@include file="../common/admin_header.jsp"%>
         <h1 class="title">管理者メニュー</h1>
         <div style="height: 2rem"></div>
+        <div class="admin">
         <ul class="flex">
-          <li><a href="showUser.jsp">ユーザー一覧</a></li>
-          <li><a href="adminExhibitList.jsp">出品一覧</a></li>
-          <li><a href="sales.jsp">売上確認</a></li>
+          <li><a href="<%= request.getContextPath()%>/userList">ユーザー一覧</a></li>
+          <li><a href="<%= request.getContextPath()%>/adminExhibitList">出品一覧</a></li>
+          <li><a href="<%= request.getContextPath()%>/sales">売上確認</a></li>
         </ul>
         <div style="height: 2rem"></div>
         <ul class="flex">
-          <li><a href="userMenu.jsp">ログアウト</a></li>
+          <li><a href="<%= request.getContextPath()%>/logout">ログアウト</a></li>
         </ul>
+        </div>
     </main>
     <footer></footer>
   </div>

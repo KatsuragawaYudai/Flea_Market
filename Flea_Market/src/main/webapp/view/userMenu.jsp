@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 <html>
 <head>
@@ -56,29 +57,77 @@
     list-style: none;
   }
   -->
- <style>
-  ul {
+
+
+<style>
+ul {
   list-style: none;
-  padding-left: 1em; //1文字文の余白を設定する場合。完全に無くしたい場合は0を入れる。
+  padding-left: 1em;
+  //1
+  文字文の余白を設定する場合。完全に無くしたい場合は0を入れる。
+}
+
+a {
+  color: rgb(88, 96, 109);
+}
+
+h1 {
+  color: rgb(88, 96, 109);
+}
+
+.user a:hover {
+  background-color: rgb(198, 241, 231);
+  opacity: 1;
+  border-radius: 0.2rem;
+  color: black;
+}
+
+.user a {
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 20px;
+  margin-bottom: 50px;
+}
+
+li {
+  margin-top: 2%;
 }
 </style>
 </head>
 <body>
+
+<%
+@SuppressWarnings("unchecked")
+ArrayList<String> notices = (ArrayList<String>)request.getAttribute("notice");
+%>
+
   <div align="center">
-  <%@include file="../common/header.jsp"%>
+    <%@include file="../common/header.jsp"%>
     <header></header>
-    <main >
-        <h2>ユーザーメニュー</h2>
+    <main>
+      <h1>ユーザーメニュー</h1>
+      <div style="height: 2rem"></div>
+      <div class="user">
+        <%
+        for(String str : notices) {
+        %>
+        <div style="color:red; text-align=center"><%= str %></div>
+<%
+}
+%>          
         <ul class="flex">
-          <li><a href="itemList.jsp">商品一覧</a></li>
-          <li><a href="exhibitScreen.jsp">出品画面</a></li>
-          <li><a href="buyHistory.jsp">購入履歴</a></li>
-          <li><a href="userExhibitList.jsp">出品一覧</a></li>
+          <li><a href="<%=request.getContextPath()%>/itemList">商品一覧</a></li>
+          <li><a
+            href="<%=request.getContextPath()%>/userMenu?transit=exhibitScreen">出品画面</a></li>
+          <li><a href="<%=request.getContextPath()%>/buyHistory">購入履歴</a></li>
+          <li><a
+            href="<%=request.getContextPath()%>/userExhibitList">出品一覧</a></li>
         </ul>
         <div style="height: 2rem"></div>
         <ul class="flex">
-          <li><a href="login.html">ログアウト</a></li>
+          <li><a href="<%=request.getContextPath()%>/logout">ログアウト</a></li>
         </ul>
+      </div>
     </main>
     <footer></footer>
   </div>

@@ -1,4 +1,5 @@
 <%@page contentType="text/html; charset=UTF-8"%>
+<%@page import="java.util.ArrayList,bean.User,bean.Item"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,13 +7,17 @@
     <title>Dntocume</title>
 </head>
 <body>
+<%
+	User user = (User)session.getAttribute("user");
+	Item item = (Item)request.getAttribute("item");
+%>
 <%@include file="../common/header.jsp"%>
-	<form action="payment.jsp" style="margin: auto; ">
+	<form action="<%=request.getContextPath()%>/payment" style="margin: auto; ">
     <div style="text-align: center;font-size: 20px; font-weight: bold;margin: 5%;">購入画面</div>
-    <div style="text-align: center;"><a style="text-align: left;display: inline-block;font-size: 22px;">商品名：今治のタオル<br><br>価格：¥1400<br><br>ご名義：神田太郎様<br><br>お届け先：東京都神田町39番地1丁目</a>
+    <div style="text-align: center;"><a style="text-align: left;display: inline-block;font-size: 22px;">商品名：<%=item.getName() %><br><br>価格：<%=item.getPrice() %>円<br><br>ご名義：<%=user.getName() %><br><br>お届け先：<%=user.getAddress() %></a>
     </div>
-    
-    <input type="submit" value="決済画面へ" style="margin: auto;background: transparent;border-radius: 0.3rem;width: 20%;border-width: 1.5px; height:40px;
+    <input type="hidden" name="itemId" value="<%=item.getItemId()%>"> 
+    <input type="submit" value="購入確定" style="margin: auto;background: transparent;border-radius: 0.3rem;width: 20%;border-width: 1.5px; height:40px;
  line-height:30px; margin-top: 5%;margin-left: 40%;">
  
     

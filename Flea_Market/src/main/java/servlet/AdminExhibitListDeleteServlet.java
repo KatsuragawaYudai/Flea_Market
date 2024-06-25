@@ -3,6 +3,8 @@ package servlet;
 import java.io.IOException;
 
 import bean.User;
+import dao.ItemDao;
+import dao.TradeDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -10,16 +12,17 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet("/adminMenu")
-public class AdminMenuServlet extends HttpServlet {
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		User user = (User)session.getAttribute("user");
-		
+@WebServlet("/adminExhibitListDelete")
+public class AdminExhibitListDeleteServlet extends HttpServlet {
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String error = null;
 		String cmd = null;
 		String link = null;
+		
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("user");
 		
 		try {
 			if (user == null) {
@@ -29,6 +32,16 @@ public class AdminMenuServlet extends HttpServlet {
 				link = "logout";
 				return;
 			}
+			// トレードを削除する
+			int itemId = Integer.parseInt(request.getParameter("itemId"));
+			ItemDao itemDao = new ItemDao();
+			TradeDao tradeDao = new TradeDao();
+			//TODO: transactionにするべき
+			itemDao.deleteByItemId(itemId);
+			tradeDao.deleteByItemId(itemId);
+
+		} catch(Exception e) {
+			e.printStackTrace();
 		} finally {
 			if (error != null) {
 				request.setAttribute("error", error);
@@ -36,9 +49,9 @@ public class AdminMenuServlet extends HttpServlet {
 				request.setAttribute("link", link);
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 			} else {
-				// 正常系
-				request.getRequestDispatcher("/view/adminMenu.jsp").forward(request, response);				
+				response.sendRedirect(request.getContextPath() + "/adminExhibitList");				
 			}
 		}
 	}
+
 }
